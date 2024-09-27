@@ -9,7 +9,7 @@ jobs:
   prepare_deploy:
     runs-on: ubuntu-22.04
     steps:
-      -   uses: actions/checkout@v2
+      -   uses: actions/checkout@v3
           with:
             fetch-depth: 0
       -   name: Set env
@@ -49,8 +49,8 @@ jobs:
       MIXDRINKS_MOBILE_APP_VERSION_CODE: ${{ needs.prepare_deploy.outputs.output_write_mix_drinks_mobile_version_code }}
     runs-on: ubuntu-22.04
     steps:
-      -   uses: actions/checkout@v2
-      -   uses: actions/setup-java@v2
+      -   uses: actions/checkout@v3
+      -   uses: actions/setup-java@v3
           with:
             java-version: '17'
             distribution: 'adopt'
@@ -94,7 +94,7 @@ jobs:
       MIXDRINKS_MOBILE_APP_VERSION_CODE: ${{ needs.prepare_deploy.outputs.output_write_mix_drinks_mobile_version_code }}
     runs-on: macos-12
     steps:
-      -   uses: actions/checkout@v2
+      -   uses: actions/checkout@v3
       -   name: Apply versions
           run: |
             /usr/libexec/Plistbuddy -c "Set CFBundleVersion $MIXDRINKS_MOBILE_APP_VERSION_CODE" iosApp/iosApp/Info.plist
@@ -123,7 +123,7 @@ jobs:
             workspace-path: iosApp/iosApp.xcworkspace
             export-method: "app-store"
       -   name: "Upload IPA file as artifact"
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v3
           with:
             name: IOS IPA
             path: "output.ipa"
